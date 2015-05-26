@@ -5,6 +5,6 @@ package models
  */
 object Models {
   trait User
-  case class WebUser() extends User
-  case class ApiUser() extends User
+  case class WebUser(userId: String, email: String, password: String, id: Option[Long] = None) extends User
+  case class ApiUser(accessToken: Long, email: String, password: String, id: Option[Long] = None) extends User
 }
