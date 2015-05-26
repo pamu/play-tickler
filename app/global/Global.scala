@@ -8,11 +8,11 @@ import play.api.{Logger, Application, GlobalSettings}
 object Global extends GlobalSettings {
   override def onStop(app: Application): Unit = {
     super.onStop(app)
-    Logger info("")
+    Logger info("play-tickler started.")
   }
 
   override def onStart(app: Application): Unit = {
     super.onStart(app)
-    Logger info("")
+    Logger info("play-tickler stopped.")
   }
 }
