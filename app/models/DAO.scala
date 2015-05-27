@@ -11,5 +11,9 @@ object DAO {
     DB.db.run(q.result)
     None
   }
-  def getApiUser(accessToken: String): Option[ApiUser] = ???
+  def getApiUser(accessToken: String): Option[ApiUser] = {
+    val q = for(apiUser <- Tables.apiUsers.filter(_.accessToken == accessToken)) yield apiUser
+    DB.db.run(q.result)
+    None
+  }
 }
