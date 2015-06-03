@@ -1,6 +1,6 @@
 package models
 
-import models.Models.{ApiUser, WebUser}
+import models.Models.{Tickle, User, ApiUser, WebUser}
 import slick.driver.MySQLDriver.api._
 
 import scala.concurrent.Future
@@ -9,12 +9,18 @@ import scala.concurrent.Future
  * Created by pnagarjuna on 26/05/15.
  */
 object DAO {
-  def getWebUser(userId: String): Future[WebUser] = {
-    val q = for(webUser <- Tables.webUsers.filter(_.userId === userId)) yield webUser
+  def getUser(userId: String): Future[User] = {
+    val q = for(user <- Tables.users.filter(_.userId === userId)) yield user
     DB.db.run(q.result).map(_ head)
   }
-  def getApiUser(accessToken: String): Future[ApiUser] = {
-    val q = for(apiUser <- Tables.apiUsers.filter(_.accessToken == accessToken)) yield apiUser
+  def getUserWithApiKey(apiKey: String): Future[User] = {
+    val q = for(user <- Tables.users.filter(_.apiKey === apiKey)) yield user
     DB.db.run(q.result).map(_ head)
+  }
+  def saveTickle(tickle: Tickle): Future[Int] = {
+    DB.db.run(Tables.tickles += tickle)
+  }
+  def init(): Future[Unit] = {
+    DB.db.run(DBIO.seq(Tables.tickles.schema.create))
   }
 }

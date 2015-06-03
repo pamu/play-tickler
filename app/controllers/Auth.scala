@@ -7,6 +7,6 @@ import play.api.mvc.{Action, Controller}
  */
 object Auth extends Controller {
   def login() = Action { implicit request =>
-    Ok("")
+    Ok("login")
   }
 }

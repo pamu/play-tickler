@@ -1,5 +1,6 @@
 package global
 
+import models.DAO
 import play.api.{Logger, Application, GlobalSettings}
 
 /**
@@ -8,11 +9,12 @@ import play.api.{Logger, Application, GlobalSettings}
 object Global extends GlobalSettings {
   override def onStop(app: Application): Unit = {
     super.onStop(app)
-    Logger info("play-tickler started.")
+    Logger info("play-tickler stopped.")
   }
 
   override def onStart(app: Application): Unit = {
     super.onStart(app)
-    Logger info("play-tickler stopped.")
+    Logger info("play-tickler started.")
+    DAO.init()
   }
 }
