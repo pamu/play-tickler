@@ -15,7 +15,7 @@ object Tables {
     def email = column[String]("email")
     def password = column[String]("password")
     def id = column[Long]("id", O.PrimaryKey)
-    def * = (userId, email, password, id.?) <> (User.tupled, User.unapply)
+    def * = (userId, apiKey, email, password, id.?) <> (User.tupled, User.unapply)
   }
 
   val ticklesTable = "tickles"

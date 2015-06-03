@@ -1,9 +1,11 @@
 package models
 
-import models.Models.{Tickle, User, ApiUser, WebUser}
+import models.Models.{Tickle, User}
 import slick.driver.MySQLDriver.api._
 
 import scala.concurrent.Future
+
+import play.api.libs.concurrent.Execution.Implicits.defaultContext
 
 /**
  * Created by pnagarjuna on 26/05/15.
