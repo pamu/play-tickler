@@ -8,6 +8,7 @@ libraryDependencies ++= Seq(
   "org.webjars" % "requirejs" % "2.1.11-1",
   "com.typesafe.slick" %% "slick" % "3.0.0",
   "com.zaxxer" % "HikariCP" % "2.3.8",
+  //"org.postgresql" % "postgresql" % "9.4-1200-jdbc41"
   "mysql" % "mysql-connector-java" % "5.1.35"
 )
 

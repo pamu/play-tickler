@@ -1,9 +1,15 @@
 @(message: String)
 
 @main("Tickler") {
-
-    <div class="well">
-        <h1>@message</h1>
+    <div>
+        <legend>Post a Tickle</legend>
+        <div class="well">
+            <textarea id="tickle" class="span6" rows="5" placeholder="tickle"></textarea>
+            <button class="btn btn-default" onclick="post();">Post</button>
+        </div>
     </div>
-
+    <div>
+        <legend>Tickles</legend>
+        <div class="well" id="tickles"></div>
+    </div>
 }

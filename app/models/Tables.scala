@@ -22,7 +22,7 @@ object Tables {
   class Tickles(tag: Tag) extends Table[Tickle](tag, ticklesTable) {
     def text = column[String]("text")
     def timestamp = column[Timestamp]("timestamp")
-    def id = column[Long]("id", O.PrimaryKey)
+    def id = column[Long]("id", O.PrimaryKey, O.AutoInc)
     def * = (text, timestamp, id.?) <> (Tickle.tupled, Tickle.unapply)
   }
   val users = TableQuery[Users]

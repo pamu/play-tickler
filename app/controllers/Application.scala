@@ -5,6 +5,7 @@ import java.util.Date
 
 import models.DAO
 import models.Models.Tickle
+import play.api.Routes
 import play.api.libs.json.{JsError, Json}
 import play.api.mvc.{Action, Controller}
 
@@ -27,5 +28,19 @@ object Application extends Controller {
           .recover {case th => Ok(Json.obj("failure" -> Json.obj("reason" -> th.getMessage)))}
       }
     )
+  }
+
+  implicit val tickleFormat = Json.format[Tickle]
+  def tickles(page: Int, pageSize: Int) = Action.async { request =>
+    DAO.getTickles(page, pageSize)
+    .map(seq => Ok(Json.obj("success" -> Json.obj("tickles" -> Json.toJson(seq)))))
+      .recover {case th => Ok(Json.obj("failure" -> Json.obj("reason" -> th.getMessage)))}
+  }
+
+  def javascriptRoutes() = Action { implicit request =>
+    Ok(Routes.javascriptRouter("jsRoutes")(
+      controllers.routes.javascript.Application.tickles,
+      controllers.routes.javascript.Application.tickle
+    )).as(JAVASCRIPT)
   }
 }

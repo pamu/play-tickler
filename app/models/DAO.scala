@@ -25,4 +25,8 @@ object DAO {
   def init(): Future[Unit] = {
     DB.db.run(DBIO.seq(Tables.tickles.schema.create))
   }
+  def getTickles(page: Int, pageSize: Int): Future[Seq[Tickle]] = {
+    val q = for(tickle <- Tables.tickles) yield tickle
+    DB.db.run(q.sortBy(_.id).drop(pageSize * (page - 1)).take(page).result)
+  }
 }
