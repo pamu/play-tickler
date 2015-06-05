@@ -17,10 +17,7 @@
         $("#more_section").append('<div class="alert alert-info"><button id="more" class="btn" onclick="more();">more</button></div>')
         var current = 1;
         function more(){
-            var result = pageLoader(current, 10);
-            if (!result) {
-               emsg('No more data to load.');
-            }
+            pageLoader(current, 10);
             current++;
         }
         more();
