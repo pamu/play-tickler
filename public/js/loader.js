@@ -12,6 +12,8 @@ function pageLoader(page, pageSize){
                 emsg('Error retrieving information, reason: ' + data.failure.reason)
                 return false;
             }
+            return false;
         }
     });
+    return false;
 }
