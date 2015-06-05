@@ -1,8 +1,4 @@
-var current = 1;
-function more(){
-    current++;
-    pageLoader(current, 10)
-}
+
 function pageLoader(page, pageSize){
     jsRoutes.controllers.Application.tickles(page, pageSize).ajax({
         success: function(data) {
@@ -11,11 +7,12 @@ function pageLoader(page, pageSize){
                 for(var i = 0; i < list.length; i++) {
                     $("#tickles").append('<div class="alert alert-success">' + list[i].text + '</div>')
                 }
-                $("#tickles").append('<div class="alert alert-success"><button id="more" class="btn">more</button></div>')
+                $("#tickles").append('<div class="alert alert-success"><button id="more" class="btn" onclick="more();">more</button></div>')
+                return true;
             }
             if (data.failure) {
-                current--;
                 emsg('Error retrieving information, reason: ' + data.failure.reason)
+                return false;
             }
         }
     });

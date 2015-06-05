@@ -13,6 +13,13 @@
         <div class="well" id="tickles"></div>
     </div>
     <script type="text/javascript">
-        pageLoader(current, 10);
+        var current = 1;
+        function more(){
+            current++;
+            var result = pageLoader(current, 10);
+            if (!result) {
+               current--;
+            }
+        }
     </script>
 }

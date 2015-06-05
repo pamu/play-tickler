@@ -3,14 +3,17 @@ function hide(time) {
         $("#msg_center").html('')
     }, time)
 };
+
 function smsg(str) {
     $("#msg_center").html('<span class="alert alert-success">' + str + '</span>');
     hide(3000);
 };
+
 function emsg(str) {
     $("#msg_center").html('<span class="alert alert-error">' + str + '</span>')
     hide(3000);
 };
+
 function post() {
     var tickle = $("#tickle").val().trim();
     if (tickle.length > 0) {
