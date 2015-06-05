@@ -2,7 +2,7 @@ package models
 
 import java.net.URI
 
-import slick.driver.MySQLDriver.api._
+import slick.driver.PostgresDriver.api._
 /**
  * Created by pnagarjuna on 26/05/15.
  */

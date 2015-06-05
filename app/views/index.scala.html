@@ -4,7 +4,7 @@
     <div>
         <legend>Post a Tickle</legend>
         <div class="well">
-            <textarea id="tickle" class="span6" rows="5" placeholder="tickle"></textarea>
+            <textarea id="tickle" class="span6" placeholder="tickle"></textarea>
             <button class="btn btn-default" onclick="post();">Post</button>
         </div>
     </div>
@@ -13,6 +13,6 @@
         <div class="well" id="tickles"></div>
     </div>
     <script type="text/javascript">
-        pageLoader(1, 2);
+        pageLoader(current, 10);
     </script>
 }

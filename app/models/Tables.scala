@@ -3,7 +3,7 @@ package models
 import java.sql.Timestamp
 
 import models.Models.{Tickle, User}
-import slick.driver.MySQLDriver.api._
+import slick.driver.PostgresDriver.api._
 /**
  * Created by pnagarjuna on 27/05/15.
  */

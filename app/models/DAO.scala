@@ -1,7 +1,7 @@
 package models
 
 import models.Models.{Tickle, User}
-import slick.driver.MySQLDriver.api._
+import slick.driver.PostgresDriver.api._
 
 import scala.concurrent.Future
 
@@ -27,6 +27,6 @@ object DAO {
   }
   def getTickles(page: Int, pageSize: Int): Future[Seq[(Long, String)]] = {
     val q = for(tickle <- Tables.tickles) yield (tickle.id, tickle.text)
-    DB.db.run(q.sortBy(_._1).drop(pageSize * (page - 1)).take(page).result)
+    DB.db.run(q.sortBy(_._1.desc).drop(pageSize * (page - 1)).take(pageSize).result)
   }
 }
