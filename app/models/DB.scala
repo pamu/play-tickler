@@ -16,7 +16,8 @@ object DB {
 
   lazy val db = Database.forURL(
     driver = "org.postgresql.Driver",
-    url = "jdbc:postgresql://" + uri.getHost + ":" + uri.getPort + uri.getPath, user = username,
+    url = "jdbc:postgresql://" + uri.getHost + ":" + uri.getPort + uri.getPath,
+    user = username,
     password = password
   )
 
