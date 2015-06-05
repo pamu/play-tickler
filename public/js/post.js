@@ -24,6 +24,7 @@ function post() {
                 success: function(data) {
                     if (data.success) {
                         smsg("Succesfully posted :).")
+                        $("#tickles").prepend('<div class="alert alert-success">' + json.text + '</div>');
                     }
                     if (data.failure) {
                         emsg("Posting failed. reason: " + data.failure.reason);
