@@ -8,7 +8,7 @@ function pageLoader(page, pageSize){
                 }
             }
             if (data.failure) {
-                emsg('Error retrieving information, reason: ' + data.failure.reason)
+                emsg(data.failure);
             }
         }
     });
