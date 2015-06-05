@@ -1,4 +1,3 @@
-
 function pageLoader(page, pageSize){
     jsRoutes.controllers.Application.tickles(page, pageSize).ajax({
         success: function(data) {
