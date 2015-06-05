@@ -14,12 +14,15 @@
         <div id="more_section"></div>
     </div>
     <script type="text/javascript">
-        var current = 0;
+        $("#more_section").append('<div class="alert alert-success"><button id="more" class="btn" onclick="more();">more</button></div>')
+        var current = 1;
         function more(){
-            current++;
             var result = pageLoader(current, 10);
             if (!result) {
                current--;
+               emsg('No more data to load.');
+            } else {
+                current++;
             }
         }
         more();
