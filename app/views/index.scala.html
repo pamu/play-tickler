@@ -18,7 +18,7 @@
         var current = 1;
         function more(){
             var result = true;
-            if (count > 0) result = pageLoader(current, 10);
+            if (current > 0) result = pageLoader(current, 10);
             if (!result) {
                current--;
                emsg('No more data to load.');
