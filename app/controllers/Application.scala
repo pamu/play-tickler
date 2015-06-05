@@ -37,8 +37,10 @@ object Application extends Controller {
   }
   def tickles(page: Int, pageSize: Int) = Action.async { request =>
     DAO.getTickles(page, pageSize)
-    .map(seq => Ok(Json.obj("success" -> Json.obj("tickles" -> Json.toJson(seq)))))
-      .recover {case th => Ok(Json.obj("failure" -> Json.obj("reason" -> th.getMessage)))}
+    .map{ seq =>
+      if(seq.isEmpty) Ok(Json.obj("success" -> Json.obj("tickles" -> Json.toJson(seq))))
+      else Ok(Json.obj("failure" -> "empty"))
+      }.recover {case th => Ok(Json.obj("failure" -> Json.obj("reason" -> th.getMessage)))}
   }
 
   def javascriptRoutes() = Action { implicit request =>
