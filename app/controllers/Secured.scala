@@ -1,6 +1,5 @@
 package controllers
 
-import akka.actor.{Props, ActorRef}
 import models.DAO
 import models.Models.User
 import play.api.mvc._

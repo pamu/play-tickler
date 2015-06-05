@@ -6,7 +6,7 @@ import java.util.Date
 import models.DAO
 import models.Models.Tickle
 import play.api.Routes
-import play.api.libs.json.{JsError, Json}
+import play.api.libs.json.{JsValue, Writes, JsError, Json}
 import play.api.mvc.{Action, Controller}
 
 import scala.concurrent.Future
@@ -30,7 +30,11 @@ object Application extends Controller {
     )
   }
 
-  implicit val tickleFormat = Json.format[Tickle]
+  implicit val tickleWrites: Writes[(Long, String)] = new Writes[(Long, String)] {
+    override def writes(o: (Long, String)): JsValue = {
+      Json.obj("id" -> o._1, "text" -> o._2)
+    }
+  }
   def tickles(page: Int, pageSize: Int) = Action.async { request =>
     DAO.getTickles(page, pageSize)
     .map(seq => Ok(Json.obj("success" -> Json.obj("tickles" -> Json.toJson(seq)))))
