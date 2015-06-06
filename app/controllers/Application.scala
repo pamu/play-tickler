@@ -44,8 +44,8 @@ object Application extends Controller {
       DAO.getTickles(page, pageSize)
         .map{ seq =>
         if(!seq.isEmpty) Ok(Json.obj("success" -> Json.obj("tickles" -> Json.toJson(seq))))
-        else Ok(Json.obj("failure" -> "empty"))
-      }.recover {case th => Ok(Json.obj("failure" -> Json.obj("reason" -> "no data available.")))}
+        else Ok(Json.obj("failure" -> "No more data to load"))
+      }.recover {case th => Ok(Json.obj("failure" -> Json.obj("reason" -> "no data available to load.")))}
     }
   }
 

@@ -4,7 +4,7 @@ function pageLoader(page, pageSize){
             if (data.success) {
                 var list = data.success.tickles;
                 for(var i = 0; i < list.length; i++) {
-                    $("#tickles").append('<div class="alert alert-success">' + list[i].text + '</div>')
+                    $("#tickles").append('<div class="alert alert-success">' + list[i].text + '</div>');
                 }
             }
             if (data.failure) {
