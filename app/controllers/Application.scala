@@ -7,7 +7,7 @@ import models.DAO
 import models.Models.Tickle
 import play.api.Routes
 import play.api.libs.json.{JsValue, Writes, JsError, Json}
-import play.api.mvc.{Action, Controller}
+import play.api.mvc.{WebSocket, Action, Controller}
 
 import scala.concurrent.Future
 
@@ -54,5 +54,9 @@ object Application extends Controller {
       controllers.routes.javascript.Application.tickles,
       controllers.routes.javascript.Application.tickle
     )).as(JAVASCRIPT)
+  }
+
+  def socket = WebSocket.tryAcceptWithActor[String, String] { implicit request =>
+    Future.successful(Left(Forbidden))
   }
 }

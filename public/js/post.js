@@ -6,12 +6,12 @@ function hide(time) {
 
 function smsg(str) {
     $("#msg_center").html('<span class="alert alert-success">' + str + '</span>');
-    hide(3000);
+    hide(5000);
 };
 
 function emsg(str) {
     $("#msg_center").html('<span class="alert alert-error">' + str + '</span>')
-    hide(3000);
+    hide(5000);
 };
 
 function post() {
