@@ -3,6 +3,7 @@ package controllers
 import java.sql.Timestamp
 import java.util.Date
 
+import actors.User
 import models.DAO
 import models.Models.Tickle
 import play.api.Routes
@@ -57,6 +58,6 @@ object Application extends Controller {
   }
 
   def socket = WebSocket.tryAcceptWithActor[String, String] { implicit request =>
-    Future.successful(Left(Forbidden))
+    Future.successful(Right(User.props(_)))
   }
 }
