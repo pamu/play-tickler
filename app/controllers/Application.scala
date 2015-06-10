@@ -14,6 +14,8 @@ import scala.concurrent.Future
 
 import play.api.libs.concurrent.Execution.Implicits.defaultContext
 
+import play.api.Play.current
+
 object Application extends Controller {
   def index = Action { request =>
     Ok(views.html.index("Tickler"))
@@ -57,7 +59,7 @@ object Application extends Controller {
     )).as(JAVASCRIPT)
   }
 
-  def socket = WebSocket.tryAcceptWithActor[String, String] { implicit request =>
+  def socket() = WebSocket.tryAcceptWithActor[String, String] { implicit request =>
     Future.successful(Right(User.props(_)))
   }
 }

@@ -7,7 +7,6 @@ import akka.actor.{Props, ActorRef, ActorLogging, Actor}
 import models.DAO
 import models.Models.Tickle
 
-import scala.concurrent.Future
 import akka.pattern.pipe
 import play.api.libs.concurrent.Execution.Implicits.defaultContext
 
@@ -29,6 +28,7 @@ class User(out: ActorRef) extends Actor with ActorLogging {
     case msg: String =>
       val future = DAO.saveTickle(Tickle(msg, new Timestamp(new Date().getTime)))
       val f = future.map{ x => Saved(out)}.recover{case th => Failed(s"failed due to ${th.getMessage}", out)}
+      f pipeTo self
     case Saved(senderMan) => senderMan ! "Saved"
     case Failed(msg, senderMan) => senderMan ! msg
     case ex => log.info("unknown message {} of type {}", ex, ex getClass)
